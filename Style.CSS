@@ -1,0 +1,471 @@
+/* ==========================================
+   Digital Card - ប្រពីណីខ្មែរ
+   Stylesheet
+   ========================================== */
+
+:root {
+  --gold: #c9933a;
+  --gold-light: #f0c060;
+  --gold-dark: #8a6020;
+  --red: #8b1a1a;
+  --red-deep: #5c0f0f;
+  --cream: #f5e6c8;
+  --cream-dark: #d4b880;
+  --bg-dark: #1a0a00;
+  --bg-mid: #2d1200;
+}
+
+/* ── RESET ── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── BODY ── */
+body {
+  font-family: 'Hanuman', serif;
+  background: var(--bg-dark);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 30px 16px 60px;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Khmer diamond-pattern background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient( 45deg, rgba(201,147,58,.04) 0px, rgba(201,147,58,.04) 1px, transparent 1px, transparent 20px),
+    repeating-linear-gradient(-45deg, rgba(201,147,58,.04) 0px, rgba(201,147,58,.04) 1px, transparent 1px, transparent 20px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Red glow at top */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 300px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(139,26,26,.35), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── WRAPPER ── */
+.wrap {
+  width: 100%;
+  max-width: 430px;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp .9s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ==========================================
+   CARD
+   ========================================== */
+.card {
+  background: linear-gradient(180deg, #1e0800 0%, #120500 100%);
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(201,147,58,.3);
+  box-shadow:
+    0 0 0 1px rgba(201,147,58,.1),
+    0 0 60px rgba(139,26,26,.4),
+    0 40px 80px rgba(0,0,0,.8);
+  position: relative;
+}
+
+/* ── KHMER BORDER STRIPS ── */
+.khmer-border-top,
+.khmer-border-bottom {
+  height: 10px;
+  background: linear-gradient(90deg,
+    var(--red-deep), var(--gold), var(--red-deep),
+    var(--gold), var(--red-deep));
+}
+
+.khmer-border-top {
+  position: relative;
+  overflow: hidden;
+}
+
+.khmer-border-top::after {
+  content: '✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦';
+  position: absolute;
+  top: -2px; left: 0;
+  font-size: 8px;
+  color: var(--gold-light);
+  letter-spacing: 10px;
+  opacity: .5;
+  white-space: nowrap;
+}
+
+.khmer-border-bottom { margin-top: 24px; }
+
+/* ==========================================
+   BANNER
+   ========================================== */
+.banner {
+  height: 185px;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(.55) saturate(1.2);
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(30,8,0,.2) 0%,
+    rgba(18,5,0,.8) 100%);
+}
+
+/* Lotus corners */
+.lotus-corner {
+  position: absolute;
+  font-size: 28px;
+  opacity: .55;
+  line-height: 1;
+  color: var(--gold);
+  z-index: 2;
+}
+.lotus-tl { top: 10px; left: 12px; }
+.lotus-tr { top: 10px; right: 12px; transform: scaleX(-1); }
+
+/* Gold shimmer strip at bottom of banner */
+.banner-pattern {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 28px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(201,147,58,.12),
+    rgba(201,147,58,.25),
+    rgba(201,147,58,.12),
+    transparent);
+  border-top: 1px solid rgba(201,147,58,.25);
+}
+
+/* ==========================================
+   AVATAR ROW
+   ========================================== */
+.avatar-row {
+  padding: 0 22px;
+  margin-top: -58px;
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.avatar-wrap { position: relative; flex-shrink: 0; }
+
+/* Conic-gradient gold lotus ring */
+.avatar-ring {
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  padding: 3px;
+  background: conic-gradient(
+    var(--gold-light) 0deg,
+    var(--gold-dark)  60deg,
+    var(--gold-light) 120deg,
+    var(--gold-dark)  180deg,
+    var(--gold-light) 240deg,
+    var(--gold-dark)  300deg,
+    var(--gold-light) 360deg
+  );
+  box-shadow:
+    0 0 0 2px var(--red-deep),
+    0 0 30px rgba(201,147,58,.45),
+    0 0 60px rgba(201,147,58,.15);
+  animation: ringGlow 4s ease-in-out infinite;
+}
+
+@keyframes ringGlow {
+  0%,100% { box-shadow: 0 0 0 2px var(--red-deep), 0 0 30px rgba(201,147,58,.45); }
+  50%      { box-shadow: 0 0 0 2px var(--red-deep), 0 0 45px rgba(201,147,58,.7), 0 0 80px rgba(201,147,58,.25); }
+}
+
+.avatar {
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.online-dot {
+  position: absolute;
+  right: 7px; bottom: 7px;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  background: #22c55e;
+  border: 3px solid #120500;
+  z-index: 2;
+}
+
+/* Avatar action buttons */
+.avatar-btns {
+  display: flex;
+  gap: 8px;
+  padding-bottom: 6px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.av-btn {
+  padding: 10px 15px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-family: 'Hanuman', serif;
+  font-weight: 700;
+  font-size: 12px;
+  text-align: center;
+  transition: .25s;
+  white-space: nowrap;
+}
+
+.av-btn-primary {
+  background: linear-gradient(135deg, var(--red-deep), var(--red));
+  color: var(--gold-light);
+  border: 1px solid rgba(201,147,58,.4);
+  box-shadow: 0 6px 20px rgba(139,26,26,.5);
+}
+
+.av-btn-secondary {
+  background: rgba(201,147,58,.08);
+  border: 1px solid rgba(201,147,58,.3);
+  color: var(--gold-light);
+}
+
+.av-btn:hover { transform: translateY(-2px); }
+
+/* ==========================================
+   CARD BODY
+   ========================================== */
+.body { padding: 16px 24px 28px; }
+
+/* Name block */
+.name-block { margin-bottom: 4px; }
+
+.name-km {
+  font-family: 'Moul', serif;
+  font-size: 11px;
+  color: var(--gold);
+  letter-spacing: 2px;
+  opacity: .8;
+  margin-bottom: 4px;
+}
+
+.name {
+  font-family: 'Koulen', cursive;
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--cream);
+  letter-spacing: 1px;
+  line-height: 1.1;
+  text-shadow: 0 2px 20px rgba(201,147,58,.3);
+}
+
+.handle {
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 2px;
+  margin: 4px 0 12px;
+  opacity: .75;
+}
+
+.bio {
+  font-size: 13px;
+  line-height: 1.8;
+  color: rgba(245,230,200,.6);
+  margin-bottom: 18px;
+}
+
+/* Khmer ornament divider */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.ornament-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(201,147,58,.4), transparent);
+}
+
+.ornament-center {
+  color: var(--gold);
+  font-size: 16px;
+  opacity: .7;
+  letter-spacing: 4px;
+}
+
+/* Section label */
+.section-label {
+  font-family: 'Moul', serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: .5;
+  margin-bottom: 12px;
+}
+
+/* ==========================================
+   SOCIAL LINKS
+   ========================================== */
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.link {
+  background: linear-gradient(135deg, rgba(201,147,58,.06), rgba(139,26,26,.08));
+  border: 1px solid rgba(201,147,58,.14);
+  padding: 12px 15px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  text-decoration: none;
+  color: var(--cream);
+  transition: .3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Gold left accent on hover */
+.link::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--gold-light), var(--gold-dark));
+  border-radius: 3px 0 0 3px;
+  opacity: 0;
+  transition: .3s;
+}
+
+.link:hover {
+  transform: translateX(5px);
+  border-color: rgba(201,147,58,.35);
+  background: linear-gradient(135deg, rgba(201,147,58,.1), rgba(139,26,26,.12));
+}
+
+.link:hover::before { opacity: 1; }
+
+/* Icons */
+.icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  flex-shrink: 0;
+}
+
+.icon svg { width: 22px; height: 22px; display: block; }
+
+.icon-ig  { background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.icon-fb  { background: #1877f2; }
+.icon-tg  { background: linear-gradient(135deg, #0088cc, #00b4d8); }
+.icon-yt  { background: #ff0000; }
+.icon-wa  { background: #25d366; }
+.icon-web {
+  background: rgba(201,147,58,.15);
+  border: 1px solid rgba(201,147,58,.3);
+}
+
+.link-info         { flex: 1; }
+.link-info h4      { font-size: 14px; font-weight: 700; margin-bottom: 2px; color: var(--cream); }
+.link-info p       { font-size: 11px; opacity: .45; color: var(--cream-dark); }
+
+.arrow {
+  font-size: 20px;
+  color: var(--gold);
+  opacity: .6;
+  transition: .3s;
+}
+
+.link:hover .arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+.footer { text-align: center; margin-top: 24px; }
+
+.footer-text {
+  font-family: 'Moul', serif;
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  opacity: .35;
+}
+
+/* ==========================================
+   FLOATING CHAT BUTTON
+   ========================================== */
+.floating-chat {
+  position: fixed;
+  right: 22px;
+  bottom: 26px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--red-deep), var(--red));
+  border: 2px solid rgba(201,147,58,.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow:
+    0 0 0 4px rgba(139,26,26,.2),
+    0 10px 30px rgba(139,26,26,.5);
+  cursor: pointer;
+  animation: floatBounce 3s ease-in-out infinite;
+  z-index: 999;
+  text-decoration: none;
+}
+
+@keyframes floatBounce {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+.icon-tiktok{
+background:linear-gradient(135deg,#111,#180209,#31706e);
+}
+
+.floating-chat svg { width: 26px; height: 26px; }
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 480px) {
+  .name        { font-size: 26px; }
+  .avatar-ring { width: 98px; height: 98px; }
+  .av-btn      { padding: 9px 12px; font-size: 11px; }
+}

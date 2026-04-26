@@ -1,0 +1,359 @@
+/* ============================================
+   style.css — CapCut Pro Order Page
+   ============================================ */
+
+/* ── RESET ── */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ── DESIGN TOKENS ── */
+:root {
+  --pink:   #e8175d;
+  --dark:   #0f0f0f;
+  --card:   #1a1a1a;
+  --card2:  #222222;
+  --border: rgba(255, 255, 255, 0.08);
+  --muted:  rgba(255, 255, 255, 0.45);
+  --white:  #ffffff;
+}
+
+/* ── BASE ── */
+body {
+  font-family: 'Noto Sans Khmer', sans-serif;
+  background: var(--dark);
+  color: var(--white);
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 28px 16px 60px;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-mark {
+  width: 38px;
+  height: 38px;
+  background: var(--pink);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 17px;
+  color: var(--white);
+  letter-spacing: -0.3px;
+}
+
+.brand-name em {
+  font-style: normal;
+  color: var(--pink);
+}
+
+.pro-badge {
+  background: var(--pink);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  padding: 3px 9px;
+  border-radius: 999px;
+  letter-spacing: 1px;
+}
+
+/* ── HERO ── */
+.hero {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 24px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(232, 23, 93, 0.12), transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.avatar-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.avatar {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 2.5px solid var(--pink);
+  display: block;
+}
+
+.avatar-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(232, 23, 93, 0.4);
+  animation: spin 10s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  line-height: 1.1;
+}
+
+.hero-title em {
+  font-style: normal;
+  color: var(--pink);
+}
+
+.hero-seller {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.hero-desc {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.7;
+  margin-top: 6px;
+}
+
+/* ── SECTION LABEL ── */
+.section-label {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+/* ── PLANS ── */
+.plans {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.plan {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: var(--white);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+  cursor: pointer;
+}
+
+.plan:not(.disabled):hover {
+  border-color: var(--pink);
+  background: var(--card2);
+  transform: translateY(-2px);
+}
+
+.plan.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.plan.popular {
+  border-color: var(--pink);
+  background: linear-gradient(135deg, #1f0d12 0%, #1a0f14 100%);
+}
+
+.plan-left {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.plan-name {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14.5px;
+}
+
+.plan-desc {
+  font-size: 11.5px;
+  color: var(--muted);
+}
+
+.plan-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.plan-price {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--pink);
+  letter-spacing: -0.5px;
+}
+
+.buy-btn {
+  background: var(--pink);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  padding: 5px 13px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.popular-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: var(--pink);
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  padding: 4px 12px 4px 14px;
+  border-radius: 0 0 12px 0;
+  letter-spacing: 0.5px;
+}
+
+.stock-badge {
+  font-size: 9px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.06);
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 22px 0;
+}
+
+/* ── NOTE ── */
+.note {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-left: 2.5px solid var(--pink);
+  border-radius: 16px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.note-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+}
+
+.note-icon {
+  font-size: 13px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── TOAST ── */
+#toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--pink);
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.25s;
+  white-space: nowrap;
+  z-index: 999;
+}
+
+#toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero { animation: fadeUp 0.4s ease both; }
+.plan { animation: fadeUp 0.4s ease both; }
+.plan:nth-child(1) { animation-delay: 0.05s; }
+.plan:nth-child(2) { animation-delay: 0.10s; }
+.plan:nth-child(3) { animation-delay: 0.15s; }
+.plan:nth-child(4) { animation-delay: 0.20s; }
+.plan:nth-child(5) { animation-delay: 0.25s; }
+.note { animation: fadeUp 0.4s 0.3s ease both; }
